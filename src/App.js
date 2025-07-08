@@ -24,7 +24,7 @@ function App() {
     root.innerHTML = `
       <h1>Todo List</h1>
       <form id="todo-form">
-        <label for="task">할 일을 입력하세요</label>
+        <label for="task" class="sr-only">할 일을 입력하세요</label>
         <input type="text" id="task" placeholder="할 일을 입력하세요" required />
         <button>추가</button>
       </form>
