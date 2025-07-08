@@ -1,17 +1,57 @@
-const data = [
-  {
-    name: "리액트 복습",
-    isCompleted: true,
-  },
-  {
-    name: "타입스크립트 공부",
-    isCompleted: false,
-  },
-];
 function App() {
+  this.data = [];
+
+  this.setState = function (newData) {
+    this.data = newData;
+    this.saveToStorage();
+    this.render();
+  };
+
+  this.saveToStorage = function () {
+    localStorage.setItem("todos", JSON.stringify(this.data));
+  };
+
+  // 할일 추가
+
+  // 할일 완료 여부
+
+  // 할일 삭제
+
+  this.render = function () {
+    const root = document.querySelector("#root");
+    root.innerHTML = `
+      <h1>Todo List</h1>
+      <form id="todo-form">
+        <label for="task">할 일을 입력하세요</label>
+        <input type="text" id="task" placeholder="할 일을 입력하세요" required />
+        <button>추가</button>
+      </form>
+      <ul id="todo-list">
+        ${
+          this.data.length
+            ? this.data
+                .map((todo) => {
+                  return `
+              <li key="${todo.id}">
+                <input type="checkbox" ${todo.isCompleted ? "checked" : ""}
+                <span>${todo.name}</span>
+                <button>삭제</button>
+              </li>
+            `;
+                })
+                .join("")
+            : `<li>할 일이 아직 없습니다.</li>`
+        }
+      </ul>
+    `;
+    // 이벤트함수들
+  };
+  this.init = function () {
+    this.data = JSON.parse(localStorage.getItem("todos")) ?? [];
+    this.render();
+  };
+
   this.init();
-  this.setState();
-  this.render();
 }
 
 export default App;
