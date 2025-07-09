@@ -23,7 +23,12 @@ function TodoList({ data, onToggle, onEdit, onCancel, onDelete, onSave }) {
         return `
   <li data-id="${todo.id}">
     <input type="checkbox" ${todo.isCompleted ? "checked" : ""} />
-    <span>${todo.name}</span>
+    <input 
+      type="text" 
+      class="todo-name" 
+      value="${todo.name}" 
+      ${todo.isCompleted ? "readonly" : ""} 
+    />
     ${!todo.isCompleted ? '<button class="update-btn">수정</button>' : ""}
     <button class="delete-btn">삭제</button>
   </li>

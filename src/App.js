@@ -56,7 +56,6 @@ function App() {
     const updated = this.data.filter((todo) => todo.id !== id);
     this.setState(updated);
   };
-
   // 완료된 할일, 전체 할일 카운트
   this.countTodo = function () {
     return {
