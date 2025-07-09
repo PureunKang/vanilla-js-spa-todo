@@ -77,7 +77,7 @@ function App() {
         onToggle: (id) => this.toggleTodo(id),
         onEdit: (id) => this.setEditing(id, true),
         onCancel: (id) => this.setEditing(id, false),
-        onDelete: this.deleteTodo,
+        onDelete: (id) => this.deleteTodo(id),
         onSave: (id, newName) => this.editTodo(id, newName),
       })
     );
