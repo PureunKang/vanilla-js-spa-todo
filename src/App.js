@@ -70,7 +70,7 @@ function App() {
     root.innerHTML = "";
 
     root.append(
-      TodoInput({ onAdd: this.addTodo }),
+      TodoInput({ onAdd: (name) => this.addTodo(name) }),
       TodoCount(this.countTodo()),
       TodoList({
         data: this.data,
@@ -86,7 +86,6 @@ function App() {
     this.data = JSON.parse(localStorage.getItem("todos")) ?? [];
     this.render();
   };
-
   this.init();
 }
 

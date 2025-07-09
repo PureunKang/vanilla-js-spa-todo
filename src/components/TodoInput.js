@@ -12,7 +12,7 @@ function TodoInput({ onAdd }) {
     const input = document.querySelector("#task");
     const value = input.value.trim();
     if (!value) return;
-    this.addTodo(value);
+    onAdd(value);
     input.value = "";
   });
 
