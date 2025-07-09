@@ -15,8 +15,10 @@ function TodoList({ data, onToggle, onEdit, onCancel, onDelete, onSave }) {
         return `
         <li data-id="${todo.id}">
             <input type="text" class="edit-input" value="${todo.name}" />
+            <div class="button-group">
             <button class="save-btn">저장</button>
             <button class="cancel-btn">취소</button>
+            </div>
           </li>
         `;
       } else {
