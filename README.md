@@ -56,11 +56,11 @@ React의 주요 개념에 익숙하기 때문에, Vanilla JS 코드를 다음과
 | `this.setState()` | `setState()`               | 상태 변경 및 리렌더 트리거       |
 | `this.render()`   | `return (...)` 또는 리렌더 | 뷰를 다시 그리는 역할            |
 
-- 트러블슈팅
-  진행 중 에러를 [에러일기](https://titanium-layer-01a.notion.site/_for_vanilla-js-spa-todo-22b6fd95803b80039028c03cf52d3ceb)에 정리하였습니다.
+- 트러블슈팅 <br>
+  진행 중 에러를 [에러일기](https://titanium-layer-01a.notion.site/_for_vanilla-js-spa-todo-22b6fd95803b80039028c03cf52d3ceb)에 정리하였습니다. <br>
   평소 에러 기록하여 학습하는 방식 그대로 정리했으며, 공유 목적이 아닌 개인 학습 용도임을 참고 바랍니다.
 
-- 추가 학습사항
+- 추가 학습사항<br>
   [this 바인딩](https://velog.io/@pureunkang/this)
 
 ---
