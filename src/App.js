@@ -17,7 +17,14 @@ function App() {
     this.setState([...this.data, newTodo]);
   };
   // 할일 완료 여부
-
+  this.toggleTodo = function (id) {
+    const update = this.data.map((todo) => {
+      return todo.id === id
+        ? { ...todo, isCompleted: !todo.isCompleted }
+        : todo;
+    });
+    this.setState(update);
+  };
   // 할일 수정
 
   // 할일 삭제
@@ -41,10 +48,10 @@ function App() {
             ? this.data
                 .map(function (todo) {
                   return `
-              <li key="${todo.id}">
+              <li data-id="${todo.id}">
                 <input type="checkbox" ${todo.isCompleted ? "checked" : ""}
                 <span>${todo.name}</span>
-                <button class="delete-btn" data-id=${todo.id}>삭제</button>
+                <button class="delete-btn">삭제</button>
               </li>
             `;
                 })
@@ -68,10 +75,14 @@ function App() {
 
     $list.addEventListener("click", (e) => {
       if (e.target.matches(".delete-btn")) {
-        const id = Number(e.target.dataset.id);
-        const isConfirmed = confirm("정말 삭제하시겠습니까?");
-        if (isConfirmed) this.deleteTodo(id);
-        this.deleteTodo(id);
+        const id = Number(e.target.closest("li").dataset.id);
+        const confirmed = confirm("정말 삭제하시겠습니까?");
+        if (confirmed) this.deleteTodo(id);
+      }
+
+      if (e.target.matches('input[type="checkbox"]')) {
+        const id = Number(e.target.closest("li").dataset.id);
+        this.toggleTodo(id);
       }
     });
   };
