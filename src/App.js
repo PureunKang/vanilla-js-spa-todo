@@ -1,3 +1,6 @@
+import TodoCount from "./components/TodoCount";
+import TodoInput from "./components/TodoInput.js";
+
 function App() {
   this.data = [];
 
@@ -68,11 +71,6 @@ function App() {
 
     root.innerHTML = `
       <h1>Todo List</h1>
-      <form id="todo-form">
-        <label for="task" class="sr-only">할 일을 입력하세요</label>
-        <input type="text" id="task" placeholder="할 일을 입력하세요" required />
-        <button>추가</button>
-      </form>
 
        ${
          hasTodos
@@ -113,18 +111,13 @@ function App() {
         }
       </ul>
     `;
-    // 이벤트함수들
-    const $form = document.querySelector("#todo-form");
-    const $list = document.querySelector("#todo-list");
 
-    $form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const input = document.querySelector("#task");
-      const value = input.value.trim();
-      if (!value) return;
-      this.addTodo(value);
-      input.value = "";
-    });
+    root.append(
+      TodoInput({ onAdd: this.addTodo }),
+      TodoCount(this.countTodo())
+    );
+    // 이벤트함수들
+    const $list = document.querySelector("#todo-list");
 
     $list.addEventListener("click", (e) => {
       if (e.target.matches(".delete-btn")) {
