@@ -1,4 +1,4 @@
-import TodoCount from "./components/TodoCount";
+import TodoCount from "./components/TodoCount.js";
 import TodoInput from "./components/TodoInput.js";
 
 function App() {
@@ -66,17 +66,8 @@ function App() {
   this.render = function () {
     const root = document.querySelector("#root");
 
-    const { totalTodo, completedTodo } = this.countTodo();
-    const hasTodos = totalTodo > 0;
-
     root.innerHTML = `
       <h1>Todo List</h1>
-
-       ${
-         hasTodos
-           ? `<div id="todo-count">총 ${totalTodo}개 / 완료 ${completedTodo}개</div>`
-           : ""
-       }
 
       <ul id="todo-list">
         ${
