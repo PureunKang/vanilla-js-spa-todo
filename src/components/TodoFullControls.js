@@ -1,4 +1,5 @@
 function TodoFullControls({ data, onClearAll, onCompleteAll }) {
+  // 할 일 목록이 있을 때만 '전체 삭제','전체 완료' 버튼 디스플레이
   if (data.length === 0) return null;
 
   const $divForBtn = document.createElement("div");
