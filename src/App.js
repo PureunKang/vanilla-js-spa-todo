@@ -21,6 +21,10 @@ function App() {
   // 할일 수정
 
   // 할일 삭제
+  this.deleteTodo = function (id) {
+    const updated = this.data.filter((todo) => todo.id !== id);
+    this.setState(updated);
+  };
 
   this.render = function () {
     const root = document.querySelector("#root");
@@ -40,7 +44,7 @@ function App() {
               <li key="${todo.id}">
                 <input type="checkbox" ${todo.isCompleted ? "checked" : ""}
                 <span>${todo.name}</span>
-                <button>삭제</button>
+                <button class="delete-btn" data-id=${todo.id}>삭제</button>
               </li>
             `;
                 })
@@ -50,16 +54,25 @@ function App() {
       </ul>
     `;
     // 이벤트함수들
-    const form = document.querySelector("#todo-form");
+    const $form = document.querySelector("#todo-form");
+    const $list = document.querySelector("#todo-list");
 
-    form.addEventListener("submit", (e) => {
+    $form.addEventListener("submit", (e) => {
       e.preventDefault();
       const input = document.querySelector("#task");
       const value = input.value.trim();
       if (!value) return;
       this.addTodo(value);
-      console.log(this);
       input.value = "";
+    });
+
+    $list.addEventListener("click", (e) => {
+      if (e.target.matches(".delete-btn")) {
+        const id = Number(e.target.dataset.id);
+        const isConfirmed = confirm("정말 삭제하시겠습니까?");
+        if (isConfirmed) this.deleteTodo(id);
+        this.deleteTodo(id);
+      }
     });
   };
   this.init = function () {
