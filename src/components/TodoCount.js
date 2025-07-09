@@ -3,10 +3,10 @@ function TodoCount({ totalTodo, completedTodo }) {
   $div.id = "todo-count";
 
   const hasTodos = totalTodo > 0;
+  $div.innerHTML = hasTodos
+    ? `총 ${totalTodo}개 / 완료 ${completedTodo}개`
+    : "";
 
-  $div.innerHTML = `
-    ${hasTodos ? 총`${totalTodo}개 / 완료 ${completedTodo}개` : ""}
-    `;
   return $div;
 }
 
