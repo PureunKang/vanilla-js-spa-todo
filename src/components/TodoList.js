@@ -25,6 +25,7 @@ function TodoList({ data, onToggle, onEdit, onCancel, onDelete, onSave }) {
         return `
   <li data-id="${todo.id}">
     <input type="checkbox" ${todo.isCompleted ? "checked" : ""} />
+    <!-- 완료된 할 일은 readonly 처리, 미완료는 인풋박스 그대로 유지하였습니다. -->
     <input 
       type="text" 
       class="todo-name" 
