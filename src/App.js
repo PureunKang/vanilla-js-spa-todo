@@ -15,6 +15,7 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(this.data));
   };
 
+  // 각 컴포넌트에서 사용할 함수 모음
   // 할일 추가
   this.addTodo = function (name) {
     const newTodo = {
