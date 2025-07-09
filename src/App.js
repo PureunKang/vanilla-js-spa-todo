@@ -74,7 +74,7 @@ function App() {
       TodoCount(this.countTodo()),
       TodoList({
         data: this.data,
-        onToggle: this.toggleTodo,
+        onToggle: (id) => this.toggleTodo(id),
         onEdit: (id) => this.editTodo(id, true),
         onCancel: (id) => this.editTodo(id, false),
         onDelete: this.deleteTodo,
