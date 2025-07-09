@@ -1,4 +1,5 @@
 import TodoCount from "./components/TodoCount.js";
+import TodoFullControls from "./components/TodoFullControls.js";
 import TodoInput from "./components/TodoInput.js";
 import TodoList from "./components/TodoList.js";
 
@@ -69,9 +70,19 @@ function App() {
 
     root.innerHTML = "";
 
+    const fullControls = TodoFullControls({
+      data: this.data,
+      onClearAll: () => this.setState([]),
+      onCompleteAll: () =>
+        this.setState(
+          this.data.map((todo) => ({ ...todo, isCompleted: true }))
+        ),
+    });
+
     root.append(
       TodoInput({ onAdd: (name) => this.addTodo(name) }),
       TodoCount(this.countTodo()),
+      ...(fullControls ? [fullControls] : []),
       TodoList({
         data: this.data,
         onToggle: (id) => this.toggleTodo(id),
