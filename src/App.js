@@ -12,7 +12,10 @@ function App() {
   };
 
   // 할일 추가
-
+  this.addTodo = function (name) {
+    const newTodo = { id: Date.now(), name, isCompleted: false };
+    this.setState([...this.data, newTodo]);
+  };
   // 할일 완료 여부
 
   // 할일 수정
@@ -32,7 +35,7 @@ function App() {
         ${
           this.data.length
             ? this.data
-                .map((todo) => {
+                .map(function (todo) {
                   return `
               <li key="${todo.id}">
                 <input type="checkbox" ${todo.isCompleted ? "checked" : ""}
@@ -47,6 +50,17 @@ function App() {
       </ul>
     `;
     // 이벤트함수들
+    const form = document.querySelector("#todo-form");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const input = document.querySelector("#task");
+      const value = input.value.trim();
+      if (!value) return;
+      this.addTodo(value);
+      console.log(this);
+      input.value = "";
+    });
   };
   this.init = function () {
     this.data = JSON.parse(localStorage.getItem("todos")) ?? [];
