@@ -13,10 +13,26 @@
 - 할 일 삭제
 - 완료 여부 토글
 - 완료된 할 일 갯수
+- 전체 할일 삭제 / 완료 처리
 
 ---
 
 ## 3. 폴더 구조
+
+```
+├── src/
+│   ├── components/
+│   │   ├── TodoCount.js
+│   │   ├── TodoFullControls.js
+│   │   ├── TodoInput.js
+│   │   └── TodoList.js
+│   ├── App.js
+│   └── index.js
+├── style/
+│   └── styles.css
+├── index.html
+└── README.md
+```
 
 ---
 
@@ -39,6 +55,13 @@ React의 주요 개념에 익숙하기 때문에, Vanilla JS 코드를 다음과
 | `this.init()`     | `useEffect()`              | 초기 마운트 시 세팅 및 로직 실행 |
 | `this.setState()` | `setState()`               | 상태 변경 및 리렌더 트리거       |
 | `this.render()`   | `return (...)` 또는 리렌더 | 뷰를 다시 그리는 역할            |
+
+- 트러블슈팅
+  진행 중 에러를 [에러일기](https://titanium-layer-01a.notion.site/_for_vanilla-js-spa-todo-22b6fd95803b80039028c03cf52d3ceb)에 정리하였습니다.
+  평소 에러 기록하여 학습하는 방식 그대로 정리했으며, 공유 목적이 아닌 개인 학습 용도임을 참고 바랍니다.
+
+- 추가 학습사항
+  [this 바인딩](https://velog.io/@pureunkang/this)
 
 ---
 
