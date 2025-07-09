@@ -75,10 +75,10 @@ function App() {
       TodoList({
         data: this.data,
         onToggle: (id) => this.toggleTodo(id),
-        onEdit: (id) => this.editTodo(id, true),
-        onCancel: (id) => this.editTodo(id, false),
+        onEdit: (id) => this.setEditing(id, true),
+        onCancel: (id) => this.setEditing(id, false),
         onDelete: this.deleteTodo,
-        onSave: this.editTodo,
+        onSave: (id, newName) => this.editTodo(id, newName),
       })
     );
   };
