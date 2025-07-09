@@ -52,8 +52,20 @@ function App() {
     this.setState(updated);
   };
 
+  // 완료된 할일, 전체 할일 카운트
+  this.countTodo = function () {
+    return {
+      totalTodo: this.data.length,
+      completedTodo: this.data.filter((todo) => todo.isCompleted).length,
+    };
+  };
+
   this.render = function () {
     const root = document.querySelector("#root");
+
+    const { totalTodo, completedTodo } = this.countTodo();
+    const hasTodos = totalTodo > 0;
+
     root.innerHTML = `
       <h1>Todo List</h1>
       <form id="todo-form">
@@ -61,6 +73,13 @@ function App() {
         <input type="text" id="task" placeholder="할 일을 입력하세요" required />
         <button>추가</button>
       </form>
+
+       ${
+         hasTodos
+           ? `<div id="todo-count">총 ${totalTodo}개 / 완료 ${completedTodo}개</div>`
+           : ""
+       }
+
       <ul id="todo-list">
         ${
           this.data.length
@@ -77,7 +96,7 @@ function App() {
                   } else {
                     return `
               <li data-id="${todo.id}">
-                <input type="checkbox" ${todo.isCompleted ? "checked" : ""}
+                <input type="checkbox" ${todo.isCompleted ? "checked" : ""} />
                 <span>${todo.name}</span>
                 ${
                   !todo.isCompleted
