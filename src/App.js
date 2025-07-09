@@ -13,20 +13,39 @@ function App() {
 
   // 할일 추가
   this.addTodo = function (name) {
-    const newTodo = { id: Date.now(), name, isCompleted: false };
+    const newTodo = {
+      id: Date.now(),
+      name,
+      isCompleted: false,
+      isEditing: false,
+    };
     this.setState([...this.data, newTodo]);
   };
   // 할일 완료 여부
   this.toggleTodo = function (id) {
-    const update = this.data.map((todo) => {
+    const updated = this.data.map((todo) => {
       return todo.id === id
         ? { ...todo, isCompleted: !todo.isCompleted }
         : todo;
     });
-    this.setState(update);
+    this.setState(updated);
   };
   // 할일 수정
-
+  this.editTodo = function (id, newName) {
+    const updated = this.data.map((todo) => {
+      return todo.id === id
+        ? { ...todo, name: newName, isEditing: false }
+        : todo;
+    });
+    this.setState(updated);
+  };
+  // 할일 수정 상태일때 렌더링 제어
+  this.setEditing = function (id, editing) {
+    const updated = this.data.map((todo) =>
+      todo.id === id ? { ...todo, isEditing: editing } : todo
+    );
+    this.setState(updated);
+  };
   // 할일 삭제
   this.deleteTodo = function (id) {
     const updated = this.data.filter((todo) => todo.id !== id);
@@ -47,13 +66,28 @@ function App() {
           this.data.length
             ? this.data
                 .map(function (todo) {
-                  return `
+                  if (todo.isEditing) {
+                    return `
+                    <li data-id="${todo.id}">
+                        <input type="text" class="edit-input" value="${todo.name}" />
+                        <button class="save-btn">저장</button>
+                        <button class="cancel-btn">취소</button>
+                      </li>
+                    `;
+                  } else {
+                    return `
               <li data-id="${todo.id}">
                 <input type="checkbox" ${todo.isCompleted ? "checked" : ""}
                 <span>${todo.name}</span>
+                ${
+                  !todo.isCompleted
+                    ? '<button class="update-btn">수정</button>'
+                    : ""
+                }
                 <button class="delete-btn">삭제</button>
               </li>
             `;
+                  }
                 })
                 .join("")
             : `<li>할 일이 아직 없습니다.</li>`
@@ -83,6 +117,26 @@ function App() {
       if (e.target.matches('input[type="checkbox"]')) {
         const id = Number(e.target.closest("li").dataset.id);
         this.toggleTodo(id);
+      }
+
+      if (e.target.matches(".update-btn")) {
+        const id = Number(e.target.closest("li").dataset.id);
+        this.setEditing(id, true);
+      }
+
+      if (e.target.matches(".cancel-btn")) {
+        const id = Number(e.target.closest("li").dataset.id);
+        this.setEditing(id, false);
+      }
+
+      if (e.target.matches(".save-btn")) {
+        const id = Number(e.target.closest("li").dataset.id);
+        const li = e.target.closest("li");
+        const input = li.querySelector(".edit-input");
+        const newName = input.value.trim();
+        if (newName) {
+          this.editTodo(id, newName);
+        }
       }
     });
   };
