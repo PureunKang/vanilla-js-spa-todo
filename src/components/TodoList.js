@@ -29,8 +29,10 @@ function TodoList({ data, onToggle, onEdit, onCancel, onDelete, onSave }) {
       value="${todo.name}" 
       ${todo.isCompleted ? "readonly" : ""} 
     />
-    ${!todo.isCompleted ? '<button class="update-btn">수정</button>' : ""}
-    <button class="delete-btn">삭제</button>
+    <div class="button-group">
+      ${!todo.isCompleted ? '<button class="update-btn">수정</button>' : ""}
+      <button class="delete-btn">삭제</button>
+    </div>
   </li>
 `;
       }
