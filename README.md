@@ -48,29 +48,4 @@
 - HTML5 / CSS3
 - Live Server (VS Code Extension)
 
----
 
-## 6. 학습 사항, 트러블슈팅 등
-
-- 이해 및 접근 방식
-
-React의 주요 개념에 익숙하기 때문에, Vanilla JS 코드를 다음과 같이 React 개념에 대응시켜 해석하고 작업 진행하였습니다.
-
-| Vanilla JS 메서드 | React 개념                 | 이해 및 접근방식                 |
-| ----------------- | -------------------------- | -------------------------------- |
-| `this.init()`     | `useEffect()`              | 초기 마운트 시 세팅 및 로직 실행 |
-| `this.setState()` | `setState()`               | 상태 변경 및 리렌더 트리거       |
-| `this.render()`   | `return (...)` 또는 리렌더 | 뷰를 다시 그리는 역할            |
-
-- 트러블슈팅 <br>
-  진행 중 에러를 [에러일기](https://titanium-layer-01a.notion.site/_for_vanilla-js-spa-todo-22b6fd95803b80039028c03cf52d3ceb)에 정리하였습니다. <br>
-  평소 에러 기록하여 학습하는 방식 그대로 정리했으며, 공유 목적이 아닌 개인 학습 용도임을 참고 바랍니다.
-
-- 추가 학습사항<br>
-  [this 바인딩](https://velog.io/@pureunkang/this)
-
----
-
-## 7. 기타 참고사항
-
-- 개인 작업 진행이므로 별도의 Git Flow 전략 없이 `main` 브랜치에서 직접 커밋 및 푸시하였습니다.
